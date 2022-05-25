@@ -96,6 +96,12 @@ while run:
     if key_pressed[K_1]:
         pass
     
+    if carI is touchign carsGroup:
+        print("Car is touching enemy")
+        
+       
+    
+        
 
     
 
