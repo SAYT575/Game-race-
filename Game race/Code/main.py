@@ -13,7 +13,6 @@ road = "road.png"
 transmission = "transmission.png"
 car = "car.png"
 markup = "markup.png"
-
 win_width = 400
 win_height = 800
 
@@ -37,7 +36,6 @@ class Enemy(GameSprite):
             self.rect.x = randint(-80, 80)
             self.rect.y = 0
 
-
 display.set_caption("Race")
 window = display.set_mode((win_width, win_height))
 backgroung = transform.scale(image.load(road),(win_width,win_height))
@@ -47,61 +45,49 @@ carLoad = transform.scale(image.load(car),(900,900))
 markupLoad = transform.scale(image.load(markup), (100,800))
 markup_y = -50
 markup_x = 160
-
-
 x1=258
 y1=550
 speed = 10
 run = 1
 finish = 0
 carsGroup = sprite.Group()
-for i in range(1,2):
+for i in range(1,2):                                                        #ЦИКЛ ДЛЯ ДОДАВАННЯ МАШИН
     car = Enemy("car.png", randint(0,300), -409, 120, 190, randint(1,5))
     carsGroup.add(car)
-
 x_background = 0
 y_background = 0
 game_over = False
-
+i=0
 while run:
     window.blit(backgroung,(x_background, y_background))
     window.blit(carI,(x1,y1))
     window.blit(transmission,(340,650))
     carsGroup.update()
     carsGroup.draw(window)
-    window.blit(markupLoad,(markup_x,markup_y))
+    window.blit(markupLoad,(markup_x,i))
 
-    while not game_over:
-        markup_y += 3
-        if markup_y > 800:
-            markup_y -= 800
-
-
-
+    #while not game_over:                           #ПРОБНИЙ ЦИКЛ ПЕРЕМІЩЕННЯ РОЗМІТКИ
+        #   markup_y += 3
+        #   if markup_y > 800:
+        #       markup_y -= 800
+    
+    i-=1                                            #РОБОЧА ФУНКЦІЯ ПЕРЕМІЩЕННЯ РОЗМІТКИ                                            
+    if i == -800:
+        i+=800
     for e in event.get():
-        if e.type == QUIT:
-            run = 0
-    display.update()
-
+       if e.type == QUIT:
+          run = 0
     key_pressed = key.get_pressed()
-
     if key_pressed[K_LEFT] and x1 > 17:
         x1 = x1 - speed
-
     if key_pressed[K_RIGHT] and x1 < 280:
         x1 = x1 + speed
     if key_pressed[K_UP] and y1 > 10:
         y1 = y1 - speed
+    display.update()
 
-    if key_pressed[K_1]:
-        pass
-    
-    if carI is touchign carsGroup:
-        print("Car is touching enemy")
-        
-       
-    
-        
+
+ 
 
     
 
